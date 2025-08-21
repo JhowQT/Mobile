@@ -9,7 +9,8 @@ export default function App() {
 
   const teste = ()=>{
     Alert.alert("Atenção", "Sou um BOTÂO",[
-      {text:"ME CLIQUE"}
+      {text:"ME CLIQUE", onPress:()=>console.log("OK PRIMEIRO")},
+      {text:"Sou o SEGUNDO ALERT", onPress:()=>console.log("OK SEGUNDO")}
     ],{cancelable:true})
   }
 
@@ -18,6 +19,7 @@ export default function App() {
       <Primeiro/>
       <Button title='Incrementar' onPress={()=>setNumero(numero+1)}/>
       <Button title='Decrementar' onPress={()=>setNumero(numero-1)}/>
+      <Button title='Butão Alerte' onPress={()=>teste()}/>
       <Text>Numero:{numero}</Text>
       <FlatList
         data={ListaAlunos}
