@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Primeiro from './scr/components/Primeiro';
+import { Button,Alert,Text,FlatList } from 'react-native';
+import { useState } from 'react';
+import ListaAlunos from './scr/components/ListaAlunos';
 
 export default function App() {
+  const [numero, setNumero]=useState(1)
+
+  const teste = ()=>{
+    Alert.alert("Atenção", "Sou um BOTÂO",[
+      {text:"ME CLIQUE"}
+    ],{cancelable:true})
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <Primeiro/>
+      <Button title='Incrementar' onPress={()=>setNumero(numero+1)}/>
+      <Button title='Decrementar' onPress={()=>setNumero(numero-1)}/>
+      <Text>Numero:{numero}</Text>
+      <FlatList
+        data={ListaAlunos}
+        renderItem={({item})=>{
+          
+          return(
+          <SafeAreaView>
+            <Text>{item.nome}</Text>
+            <Text>{item.nFaltas}</Text>
+          </SafeAreaView>
+          )
+          
+        }}
+      />
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
